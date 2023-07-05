@@ -26,10 +26,13 @@
             ],
             "styles": [
               "src/assets/css/animate.css",
+              "src/assets/css/icomoon.css",
               "src/assets/css/ionicons.min.css",
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/magnific-popup.css",
               "src/assets/css/flexslider.css",
+              "src/assets/css/owl.carousel.min.css",
+              "src/assets/css/owl.theme.default.min.css",
               "src/assets/css/bootstrap-datepicker.css",
               "src/assets/fonts/flaticon/font/flaticon.css",
               "src/assets/css/style.css",

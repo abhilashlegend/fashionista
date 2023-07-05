@@ -17,8 +17,8 @@
         <div class="row">
           <div class="col-sm-12 text-left menu-1">
             <ul>
-              <li class="active"><a routerLink="/">Home</a></li>
-              <li class="has-dropdown">
+              <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"><a routerLink="/">Home</a></li>
+              <li routerLinkActive="active" class="has-dropdown">
                 <a routerLink="/products">Men</a>
                 <ul class="dropdown">
                   <li><a href="product-detail.html">Product Detail</a></li>
@@ -28,9 +28,9 @@
                   <li><a href="add-to-wishlist.html">Wishlist</a></li>
                 </ul>
               </li>
-              <li><a routerLink="/products">Women</a></li>
-              <li><a routerLink="/about">About</a></li>
-              <li><a routerLink="/contact">Contact</a></li>
+              <li routerLinkActive="active"><a routerLink="/products">Women</a></li>
+              <li routerLinkActive="active"><a routerLink="/about">About</a></li>
+              <li routerLinkActive="active"><a routerLink="/contact">Contact</a></li>
               <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
             </ul>
           </div>
