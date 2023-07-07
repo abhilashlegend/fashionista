@@ -12,6 +12,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { ProductsComponent } from './pages/products/products.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { LoginComponent } from './pages/admin/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './pages/admin/login/login.component';
     BreadcrumbsComponent,
     ProductsComponent,
     PaginationComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { LoginComponent as UserLoginComponent } from './pages/login/login.component';
 import { LoginComponent } from './pages/admin/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, data: { title: "Home" } },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: "about", component: AboutComponent, data: { title: "About" } },
   { path: "contact", component: ContactComponent, data: { title: "Contact" } },
   { path: "login", component: UserLoginComponent, data: { title: "Login" } },
+  { path: "register", component: RegisterComponent, data: {title: "Register" }},
   { path: "admin", children: [
     { path: "login", component: LoginComponent, data: { title: "Admin Login" } }
   ]}
