@@ -13,6 +13,10 @@ import { ProductsComponent } from './pages/products/products.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { LoginComponent } from './pages/admin/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import {  HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from './services/api.service';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +30,17 @@ import { RegisterComponent } from './pages/register/register.component';
     ProductsComponent,
     PaginationComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [Title],
+  providers: [Title, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

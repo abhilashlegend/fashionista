@@ -14,21 +14,24 @@
                     <div class="col-lg-8">
                     <div class="card-body py-5 px-md-5">
             
-                        <form>
+                        <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+                            <div class="form-outline mb-4 text-danger">
+                                {{ message }}
+                            </div>
                         <!-- Email input -->
                         <div class="form-group mb-4">
                             <label class="form-label" for="form2Example1">Email address</label>
-                            <input type="email" placeholder="Your email address" id="form2Example1" class="form-control" />
+                            <input type="email" formControlName="username" placeholder="Your email address" id="form2Example1" class="form-control" />
                             
                         </div>
             
                         <!-- Password input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form2Example2">Password</label>
-                            <input type="password" placeholder="Your password" id="form2Example2" class="form-control" />
+                            <input type="password" formControlName="password" placeholder="Your password" id="form2Example2" class="form-control" />
                         </div>
                         <!-- Submit button -->
-                        <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+                        <button type="submit" [disabled]="!formdata.valid" class="btn btn-primary btn-block mb-4" value="Sign in">Sign in</button>
             
                         </form>
             
