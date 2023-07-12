@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   formdata:any;
   message!:string;
 
-  constructor(private api:ApiService){
+  constructor(private api:ApiService, private router: Router){
 
   }
 
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
     console.log(data);
     this.api.post("admin/login", {data: data}).subscribe((result:any) => {
       if(result.data.status == "success"){
-        alert("Success");
+        localStorage.setItem("usertype", "admin");
+        this.router.navigate(['/admin/dashboard']);
       } else {
         this.message = "Username or password is wrong!";
       }
