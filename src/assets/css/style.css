@@ -8347,7 +8347,7 @@ h1, h2, h3, h4, h5,
   font-size: 13px !important;
   font-weight: 300;
   background: #fff !important;
-  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 1) !important;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;

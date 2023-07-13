@@ -18,4 +18,8 @@ export class ApiService {
     const body = JSON.stringify(data);
     return this.http.post(this.baseurl + path, body, {'headers': headers});
    }
+
+   get(path:string){
+    return this.http.get(this.baseurl + path);
+   }
 }

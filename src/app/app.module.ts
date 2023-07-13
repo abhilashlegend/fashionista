@@ -22,6 +22,7 @@ import { ProductComponent } from './pages/admin/product/product.component';
 import { ProductvarietiesComponent } from './pages/admin/productvarieties/productvarieties.component';
 import { OrdersComponent } from './pages/admin/orders/orders.component';
 import { MainComponent } from './components/admin/main/main.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MainComponent } from './components/admin/main/main.component';
     MainComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
