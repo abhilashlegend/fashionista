@@ -22,4 +22,9 @@ export class ApiService {
    get(path:string){
     return this.http.get(this.baseurl + path);
    }
+
+   delete(path:string, id:string){
+    const url = `${this.baseurl}${path}/${id}`;
+    return this.http.delete(url);
+   }
 }

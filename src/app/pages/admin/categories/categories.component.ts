@@ -56,4 +56,12 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
+  deletecategory(catId:string){
+    if(confirm("Are you sure you want to delete ?")){
+      this.api.delete("productcategory/delete", catId).subscribe(() => { this.bind()}, error => {
+        console.log(error);
+      });
+    }
+  }
+
 }
