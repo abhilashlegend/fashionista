@@ -41,7 +41,7 @@
                 <tr *ngFor="let category of categories">
                     <td>{{ category.srno }} </td>
                     <td>{{ category.name }}</td>
-                    <td><img src="{{ baseurl + category.imagePath }}" alt="{{ category.name }}" /></td>
+                    <td><img src="{{ baseurl + category.imagePath }}" alt="{{ category.name }}" class="cat-img" /></td>
                     <td class="w-200">
                         <button class="btn btn-primary btn-sm">Edit</button>
                         <button class="btn btn-danger btn-sm">Delete</button>

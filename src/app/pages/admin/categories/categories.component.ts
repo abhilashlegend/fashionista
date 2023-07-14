@@ -18,6 +18,11 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.bind();
+    
+  }
+
+  private bind() {
     this.api.get("productcategory/list").subscribe((result:any) => {
       this.categories = result.data;
     })
@@ -33,8 +38,10 @@ export class CategoriesComponent implements OnInit {
   onClickSubmit(formdata:any){
     formdata.image = this.imagestring;
     console.log(formdata);
-    this.api.post("productcategory/save", formdata).subscribe(result => {
-      console.log(result);
+    this.api.post("productcategory/save", {data: formdata}).subscribe(result => {
+      this.bind();
+    }, error => {
+      console.log("Error: " + error);
     });
   }
 
