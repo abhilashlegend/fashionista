@@ -19,12 +19,23 @@ export class ApiService {
     return this.http.post(this.baseurl + path, body, {'headers': headers});
    }
 
-   get(path:string){
-    return this.http.get(this.baseurl + path);
+   get(path:string, id?:string){
+    if(id == null){
+      return this.http.get(this.baseurl + path);
+    } else {
+      return this.http.get(`${this.baseurl}${path}/${id}`);
+    }
+   }
+
+   update(path:string, id:string, data:any){
+    const url = `${this.baseurl}${path}/${id}`;
+    return this.http.put(url, data);
    }
 
    delete(path:string, id:string){
     const url = `${this.baseurl}${path}/${id}`;
     return this.http.delete(url);
    }
+
+
 }

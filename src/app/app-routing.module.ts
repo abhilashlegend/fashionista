@@ -11,7 +11,7 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 
 const routes: Routes = [
   { path: "", component: HomeComponent, data: { title: "Home" } },
-  { path: "products", component: ProductsComponent, data: { title: "Products" } },
+  { path: "products/:categoryid", component: ProductsComponent, data: { title: "Products" } },
   { path: "about", component: AboutComponent, data: { title: "About" } },
   { path: "contact", component: ContactComponent, data: { title: "Contact" } },
   { path: "login", component: UserLoginComponent, data: { title: "Login" } },

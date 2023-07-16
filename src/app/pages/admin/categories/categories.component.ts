@@ -37,12 +37,21 @@ export class CategoriesComponent implements OnInit {
 
   onClickSubmit(formdata:any){
     formdata.image = this.imagestring;
-    console.log(formdata);
-    this.api.post("productcategory/save", {data: formdata}).subscribe(result => {
-      this.bind();
-    }, error => {
-      console.log("Error: " + error);
-    });
+    if(formdata.id == ''){
+      this.api.post("productcategory/save", {data: formdata}).subscribe(result => {
+        this.bind();
+      }, error => {
+        console.log("Error: " + error);
+      });
+    } else {
+      this.api.update("productcategory/update", formdata.id, formdata).subscribe(result => {
+        console.log(result);
+        this.bind();
+      }, error => {
+        console.log("Error: " + error);
+      });
+    }
+    
   }
 
   imageChanged(event:any){
@@ -62,6 +71,18 @@ export class CategoriesComponent implements OnInit {
         console.log(error);
       });
     }
+  }
+
+  editcategory(catId:string){
+    this.api.get("productcategory/get", catId).subscribe((result:any) => {
+      let category = result.data;
+      this.formdata = new FormGroup({
+        id: new FormControl(category._id),
+        name: new FormControl(category.name),
+        srno: new FormControl(category.srno),
+        image: new FormControl("")
+      })      
+    })
   }
 
 }

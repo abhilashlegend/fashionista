@@ -43,7 +43,7 @@
                     <td>{{ category.name }}</td>
                     <td><img src="{{ baseurl + category.imagePath }}" alt="{{ category.name }}" class="cat-img" /></td>
                     <td class="w-200">
-                        <button class="btn btn-primary btn-sm">Edit</button>
+                        <button class="btn btn-primary btn-sm" (click)="editcategory(category._id)">Edit</button>
                         <button class="btn btn-danger btn-sm" (click)="deletecategory(category._id)">Delete</button>
                     </td>
                 </tr>

@@ -28,7 +28,7 @@
                   <li><a href="add-to-wishlist.html">Wishlist</a></li>
                 </ul>
               </li>
-              <li routerLinkActive="active"><a routerLink="/products">Women</a></li>
+              <li *ngFor="let category of categories" routerLinkActive="active"><a routerLink="products/{{ category._id }}">{{ category.name }}</a></li>
               <li routerLinkActive="active"><a routerLink="/about">About</a></li>
               <li routerLinkActive="active"><a routerLink="/contact">Contact</a></li>
               
