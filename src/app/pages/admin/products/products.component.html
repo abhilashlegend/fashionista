@@ -1,1 +1,39 @@
-<p>products works!</p>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="d-inline">Products</h1>
+        <a routerLink="/admin/product" class="btn btn-success float-right mt-2">Product</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-stripped">
+                <tr>
+                    <th>Sr.no</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>MRP</th>
+                    <th>Price</th>
+                    <th>In Stock</th>
+                    <th>Is Active</th>
+                    <th>Actions</th>
+                </tr>
+                <tr *ngFor="let product of products; let i = index;">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ product.name }}</td>
+                    <td> <img src="{{ baseurl + product.imagePath }}" alt="" /></td>
+                    <td>{{ product.mrp }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.instock }}</td>
+                    <td>{{ product.isactive }}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" (click)="editproduct(product._id)">Edit</button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteproduct(product._id)">Delete</button>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
