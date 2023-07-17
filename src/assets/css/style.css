@@ -7380,14 +7380,14 @@ h1, h2, h3, h4, h5,
     top: 0;
     right: -5px;
     padding: 0;
-    background: #88c8bc;
+    background: linear-gradient(135deg,#017BFF 0%,#D36BE7 100%);
     border: 1px solid #88c8bc; }
     .colorlib-nav .top-menu .search-wrap .submit-search i {
       padding: 0; }
 
 .colorlib-nav .sale {
   padding: 14px 0;
-  background: #88c8bc; }
+  background: linear-gradient(135deg,#017BFF 0%,#D36BE7 100%); }
   .colorlib-nav .sale h3 {
     margin-bottom: 0;
     font-family: "Montserrat", Arial, sans-serif;
