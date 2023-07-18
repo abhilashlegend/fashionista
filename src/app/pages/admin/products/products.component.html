@@ -28,7 +28,7 @@
                     <td>{{ product.instock }}</td>
                     <td>{{ product.isactive }}</td>
                     <td>
-                        <button class="btn btn-primary btn-sm" (click)="editproduct(product._id)">Edit</button>
+                        <a routerLink="/admin/product/{{ product._id }}" class="btn btn-primary btn-sm">Edit</a>
                         <button class="btn btn-danger btn-sm" (click)="deleteproduct(product._id)">Delete</button>
                     </td>
                     

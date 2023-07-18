@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -8,40 +9,85 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  id:any = "";
   formdata:any;
   categories:any;
   imagestring:string;
+  product:any;
+  selectedCategoryId: any;
 
-  constructor(private api:ApiService) {
+  constructor(private api:ApiService, private route:ActivatedRoute) {
     this.imagestring = "";
+    this.selectedCategoryId = "";
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get("id");
+    
     this.api.get("productcategory/list").subscribe((result:any) => {
       this.categories = result.data;
     }, error => {
       console.log(error);
     })
 
+    if(this.id !== null){
+      this.api.get("product/get/" + this.id).subscribe((result:any) => {
+        this.product = result.data;
+        this.selectedCategoryId = this.product.pcid;
+        this.bind();
+      })
+    } else {
+      this.bind();
+    }
+
+    
+  }
+
+  private bind() {
+
     this.formdata = new FormGroup({
-      id: new FormControl(""),
-      pcid: new FormControl("", Validators.required),
-      name: new FormControl("", Validators.required),
-      description: new FormControl("", Validators.required),
-      specification: new FormControl("", Validators.required),
-      mrp: new FormControl(0, Validators.required),
-      price: new FormControl(0, Validators.required),
-      instock: new FormControl("Yes", Validators.required),
-      isactive: new FormControl("Yes", Validators.required),
-      image: new FormControl("")
-    })    
+      id: new FormControl(this.product == null ? "" : this.product._id),
+      pcid: new FormControl(this.product == null ? "" : this.product.pcid, Validators.required),
+      name: new FormControl(this.product == null ? "" : this.product.name, Validators.required),
+      description: new FormControl(this.product == null ? "" : this.product.description, Validators.required),
+      specification: new FormControl(this.product == null ? "" : this.product.specification, Validators.required),
+      mrp: new FormControl(this.product == null ? 0 : this.product.mrp, Validators.required),
+      price: new FormControl(this.product == null ? 0 : this.product.price, Validators.required),
+      instock: new FormControl(this.product == null ? "" : this.product.instock, Validators.required),
+      isactive: new FormControl(this.product == null ? "" : this.product.isactive, Validators.required),
+      image: new FormControl(this.product == null ? "" : this.product.imagePath)
+    });
+    
+    this.formdata.get('pcid').setValue(this.product.pcid);
   }
 
   onClickSubmit(data:any) {
-
+    if(data.id == null){
+      this.api.post("product/save", {data: data}).subscribe((result:any) => {
+        console.log(result);
+      }, error => {
+        console.log(error);
+      })
+    } else {
+      this.api.update("product/update", data.id, data).subscribe((result:any) => {
+        console.log(result);
+      }, error => {
+        console.log(error);
+      })
+    }
+    data.image = this.imagestring;
+    
   }
 
-  imageChanged($event: Event){
-
+  imageChanged(event:any){
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      if(reader.result != null){
+        this.imagestring = reader.result.toString();
+      }
+    }
   }
+
 }

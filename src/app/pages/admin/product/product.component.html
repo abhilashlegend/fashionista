@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="formdata">
     <div class="col-lg-12">
         <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
             <input type="hidden" formControlName="id" />
@@ -12,8 +12,8 @@
             <div class="form-group">
                 <label>Category</label>
                 <select class="form-control" formControlName="pcid">
-                    <option selected value="">Select category</option>
-                    <option *ngFor="let category of categories" value="{{ category._id }}"> {{  category.name }}</option>
+                    <option value="">Select category</option>
+                    <option *ngFor="let category of categories" [ngValue]="category._id"> {{  category.name }}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -39,13 +39,13 @@
             <div class="form-group">
                 <label>In Stock</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="instock" formControlName="instock" id="instock_yes" value="Yes" />
+                    <input class="form-check-input" type="radio" name="instock" formControlName="instock" id="instock_yes" value="yes" />
                     <label class="form-check-label" for="instock_yes">
                       Yes
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="instock" formControlName="instock" id="instock_no" value="No" />
+                    <input class="form-check-input" type="radio" name="instock" formControlName="instock" id="instock_no" value="no" />
                     <label class="form-check-label" for="instock_no">
                       No
                     </label>
@@ -54,13 +54,13 @@
             <div class="form-group">
                 <label>Is Active</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="isactive" formControlName="isactive" id="isactive_yes" value="Yes" />
+                    <input class="form-check-input" type="radio" name="isactive" formControlName="isactive" id="isactive_yes" value="yes" />
                     <label class="form-check-label" for="isactive_yes">
                       Yes
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="isactive" formControlName="isactive" id="isactive_no" value="No" />
+                    <input class="form-check-input" type="radio" name="isactive" formControlName="isactive" id="isactive_no" value="no" />
                     <label class="form-check-label" for="isstock_no">
                       No
                     </label>
