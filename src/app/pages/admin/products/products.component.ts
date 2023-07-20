@@ -16,17 +16,25 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.api.get("product/list").subscribe((result:any) => {
-      this.products = result.data;
-    })
+   this.bind();
   }
 
   editproduct(id:string) {
 
   }
 
-  deleteproduct(id:string) {
+  private bind() {
+    this.api.get("product/list").subscribe((result:any) => {
+      this.products = result.data;
+    })
+  }
 
+  deleteproduct(id:string) {
+    if(confirm("Are you sure you want to delete ?")){
+      this.api.delete("product/delete", id).subscribe(() => { this.bind()}, error => {
+        console.log(error);
+      });
+    }
   }
 
 }

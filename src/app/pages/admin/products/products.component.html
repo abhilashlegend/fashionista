@@ -13,6 +13,7 @@
                     <th>Sr.no</th>
                     <th>Name</th>
                     <th>Image</th>
+                    <th>Varieties</th>
                     <th>MRP</th>
                     <th>Price</th>
                     <th>In Stock</th>
@@ -23,6 +24,7 @@
                     <td>{{ i + 1 }}</td>
                     <td>{{ product.name }}</td>
                     <td> <img src="{{ baseurl + product.imagePath }}" alt="" /></td>
+                    <td> <a class="btn btn-warning" routerLink="/admin/product/varieties/{{ product._id }}">  {{ product.varieties.length }} </a></td>
                     <td>{{ product.mrp }}</td>
                     <td>{{ product.price }}</td>
                     <td>{{ product.instock }}</td>

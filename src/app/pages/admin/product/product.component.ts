@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +16,7 @@ export class ProductComponent implements OnInit {
   product:any;
   selectedCategoryId: any;
 
-  constructor(private api:ApiService, private route:ActivatedRoute) {
+  constructor(private api:ApiService, private route:ActivatedRoute, private router: Router) {
     this.imagestring = "";
     this.selectedCategoryId = "";
   }
@@ -55,27 +55,27 @@ export class ProductComponent implements OnInit {
       price: new FormControl(this.product == null ? 0 : this.product.price, Validators.required),
       instock: new FormControl(this.product == null ? "" : this.product.instock, Validators.required),
       isactive: new FormControl(this.product == null ? "" : this.product.isactive, Validators.required),
-      image: new FormControl(this.product == null ? "" : this.product.imagePath)
+      imagePath: new FormControl(this.product == null ? "" : this.product.imagePath)
     });
     
-    this.formdata.get('pcid').setValue(this.product.pcid);
   }
 
   onClickSubmit(data:any) {
-    if(data.id == null){
+    data.imagePath = this.imagestring;
+    if(data.id == ''){
       this.api.post("product/save", {data: data}).subscribe((result:any) => {
-        console.log(result);
+        this.router.navigate(['/admin/products'])
       }, error => {
         console.log(error);
       })
     } else {
       this.api.update("product/update", data.id, data).subscribe((result:any) => {
-        console.log(result);
+        this.router.navigate(['/admin/products'])
       }, error => {
         console.log(error);
       })
     }
-    data.image = this.imagestring;
+  
     
   }
 
