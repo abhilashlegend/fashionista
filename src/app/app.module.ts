@@ -18,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { NavbarComponent } from './components/admin/navbar/navbar.component';
-import { ProductComponent } from './pages/admin/product/product.component';
+import { ProductComponent } from './pages/product/product.component';
 import { ProductvarietiesComponent } from './pages/admin/productvarieties/productvarieties.component';
 import { OrdersComponent } from './pages/admin/orders/orders.component';
 import { MainComponent } from './components/admin/main/main.component';

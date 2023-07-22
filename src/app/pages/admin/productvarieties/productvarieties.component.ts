@@ -46,7 +46,12 @@ export class ProductvarietiesComponent implements OnInit {
   }
 
   public deleteVariety(variety:any){
-    console.log(variety);
+    if(confirm("Are you sure you want to delete?")){
+      const object = {id: this.id, variety: variety};
+      this.api.post("product/deletevariety", {data: object}).subscribe((result:any) => {
+        this.bind();
+      })
+    }
   }
 
 }
