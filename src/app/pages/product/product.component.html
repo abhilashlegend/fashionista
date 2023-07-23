@@ -1,6 +1,6 @@
 <app-breadcrumbs *ngIf="product"  currentPage="{{ product.name }}"></app-breadcrumbs>
 
-<div class="colorlib-product">
+<div class="colorlib-product" *ngIf="product">
     <div class="container">
         <div class="row row-pb-lg product-detail-wrap">
             <div class="col-sm-8">
@@ -16,42 +16,43 @@
                 <div class="product-desc">
                     <h3>{{ product.name }}</h3>
                     <p class="price">
-                        <span>{{ product.price | currency:"INR" }} </span> 
-                        <del>{{ product.mrp | currency:"INR" }} </del> 
+                        <span>{{ price | currency:"INR" }} </span> 
+                        <del>{{ mrp | currency:"INR" }} </del> 
                     </p>
+                    <p class="text-danger">{{ message }}</p>
                     <p>{{ product.description }}</p>
-                    <div class="size-wrap">
+                    <div class="size-wrap" *ngIf="product.varieties.length > 0">
                         <div class="block-26 mb-2">
                             <h4>Size</h4>
-                            <select>
-                                <option>Size</option>
-                                <option *ngFor="let variety of product.varieties"  value="variety.size">{{ variety.size }}</option>
+                            <select [(ngModel)]="size" (change)="checkPrice()">
+                                <option value="undefined">Size</option>
+                                <option *ngFor="let variety of product.varieties">{{ variety.size }}</option>
                             </select>
                     </div>
                     <div class="block-26 mb-4">
                             <h4>Color</h4>
-                            <select>
-                                <option>Color</option>
-                                <option *ngFor="let variety of product.varieties"  value="variety.color">{{ variety.color }}</option>
+                            <select [(ngModel)]="color" (change)="checkPrice()">
+                                <option value="undefined">Color</option>
+                                <option *ngFor="let variety of product.varieties">{{ variety.color }}</option>
                             </select>
                     </div>
                     </div>
              <div class="input-group mb-4">
                  <span class="input-group-btn">
-                    <button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
+                    <button type="button" class="quantity-left-minus btn" (click)="decreaseQuantity()"  data-type="minus" data-field="">
                    <i class="icon-minus2"></i>
                     </button>
                     </span>
-                 <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                 <input type="text" [(ngModel)]="quantity" readonly id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
                  <span class="input-group-btn ml-1">
-                    <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+                    <button type="button" class="quantity-right-plus btn" (click)="increaseQuantity()" data-type="plus" data-field="">
                      <i class="icon-plus2"></i>
                  </button>
                  </span>
               </div>
               <div class="row">
                   <div class="col-sm-12 text-center">
-                            <p class="addtocart"><button class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</button></p>
+                            <p class="addtocart"><button class="btn btn-primary btn-addtocart" (click)="addToCart()"><i class="icon-shopping-cart"></i> Add to Cart</button></p>
                         </div>
                     </div>
                 </div>

@@ -21,7 +21,6 @@ export class ProductvarietiesComponent implements OnInit {
   private bind() {
     this.api.get("product/get/" + this.id).subscribe((result:any) => {
       this.product = result.data;
-      console.log(this.product);
     });
 
     this.formdata = new FormGroup({
