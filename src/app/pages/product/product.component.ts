@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { Output, EventEmitter } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -12,15 +14,16 @@ export class ProductComponent implements OnInit {
   id:any;
   product:any;
   baseurl:string;
-  quantity:number = 0;
+  quantity:number = 1;
   size:string|number|undefined = undefined;
   color:string = "";
   price!:number;
   mrp!:number;
   message:string = "";
+  @Output() cartcounter = new EventEmitter<number>();
 
 
-  constructor(private api: ApiService, private route:ActivatedRoute) {
+  constructor(private api: ApiService, private route:ActivatedRoute, private cartService: CartService, private cd: ChangeDetectorRef) {
     this.baseurl = api.baseurl;
   }
 
@@ -39,7 +42,7 @@ export class ProductComponent implements OnInit {
   }
 
   decreaseQuantity() {
-    if(this.quantity > 0){
+    if(this.quantity > 1){
       this.quantity--;
     }
   }
@@ -48,10 +51,32 @@ export class ProductComponent implements OnInit {
     let product = {
       id: this.id,
       quantity: this.quantity,
+      color: this.color,
+      size: this.size,
       mrp: this.mrp,
       price: this.price
     }
 
+    let products = new Array();
+
+    if(localStorage.getItem("products") != null){
+      products = JSON.parse(localStorage.getItem("products") || "[]");
+    }
+
+    let added = false;  
+    for(let i = 0; i < products.length; i++){
+      if(products[i].id == product.id && products[i].color == product.color && products[i].size == product.size){
+        alert("Product already added to cart");
+        added = true;
+      }
+    }
+    if(!added){
+      products.push(product);
+    }
+    localStorage.setItem("products", JSON.stringify(products));
+    alert("Product added to cart");
+    this.cartService.setCartCount(products.length);
+    this.cd.detectChanges();
     console.log(product);
   }
 
