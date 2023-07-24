@@ -23,13 +23,11 @@ export class HeaderComponent implements OnInit {
 
     this.cartService.cartCountEmitter.subscribe((count:number) => {
       this.cartcount = count;
-      console.log(this.cartcount);
     })
 
      if(localStorage.getItem("products") != null){
       let products = JSON.parse(localStorage.getItem("products") || "[]");
       this.cartcount = products.length;
-      console.log(this.cartcount);
     } 
   }
 }

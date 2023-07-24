@@ -23,7 +23,7 @@
                 <tr *ngFor="let product of products; let i = index;">
                     <td>{{ i + 1 }}</td>
                     <td>{{ product.name }}</td>
-                    <td> <img src="{{ baseurl + product.imagePath }}" alt="" /></td>
+                    <td> <img src="{{ baseurl + product.imagePath }}" class="img-fluid" alt="" /></td>
                     <td> <a class="btn btn-warning" routerLink="/admin/product/varieties/{{ product._id }}">  {{ product.varieties.length }} </a></td>
                     <td>{{ product.mrp }}</td>
                     <td>{{ product.price }}</td>

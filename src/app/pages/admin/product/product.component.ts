@@ -62,6 +62,8 @@ export class ProductComponent implements OnInit {
 
   onClickSubmit(data:any) {
     data.imagePath = this.imagestring;
+    data.varieties = this.product.varieties;
+    console.log(data.varieties);
     if(data.id == ''){
       this.api.post("product/save", {data: data}).subscribe((result:any) => {
         this.router.navigate(['/admin/products'])

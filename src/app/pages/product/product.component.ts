@@ -33,7 +33,6 @@ export class ProductComponent implements OnInit {
       this.product = result.data;
       this.mrp = this.product.mrp;
       this.price = this.product.price;
-      console.log(this.product);
     })
   }
 
@@ -50,6 +49,8 @@ export class ProductComponent implements OnInit {
   addToCart() {
     let product = {
       id: this.id,
+      name: this.product.name,
+      imagepath: this.product.imagePath,
       quantity: this.quantity,
       color: this.color,
       size: this.size,
@@ -77,7 +78,6 @@ export class ProductComponent implements OnInit {
     alert("Product added to cart");
     this.cartService.setCartCount(products.length);
     this.cd.detectChanges();
-    console.log(product);
   }
 
   checkPrice() {
