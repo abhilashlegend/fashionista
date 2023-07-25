@@ -37,13 +37,16 @@
                         <span>Remove</span>
                     </div>
                 </div>
-                <div class="product-cart d-flex" *ngFor="let product of products">
-                    <div *ngIf="product">
+                <div class="product-cart" *ngFor="let product of products">
+                    <div class="d-flex" *ngIf="product">
                         <div class="one-forth">
                             <div class="product-img" style="background-image: url({{ baseurl + product.imagepath }});">
                             </div>
                             <div class="display-tc">
-                                <h3>{{ product.name }}</h3>
+                                <h3>
+                                    {{ product.name }} <strong *ngIf="product.size != ''">Size :</strong> {{ product.size }} 
+                                    <strong *ngIf="product.color != ''">Color :</strong> {{ product.color }}
+                                </h3>
                             </div>
                         </div>
                         <div class="one-eight text-center">
@@ -75,27 +78,21 @@
                 <div class="total-wrap">
                     <div class="row">
                         <div class="col-sm-8">
-                            <form action="#">
-                                <div class="row form-group">
-                                    <div class="col-sm-9">
-                                        <input type="text" name="quantity" class="form-control input-number" placeholder="Your Coupon Number...">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="submit" value="Apply Coupon" class="btn btn-primary">
-                                    </div>
-                                </div>
-                            </form>
+                            
                         </div>
                         <div class="col-sm-4 text-center">
                             <div class="total">
                                 <div class="sub">
-                                    <p><span>Subtotal:</span> <span>$200.00</span></p>
-                                    <p><span>Delivery:</span> <span>$0.00</span></p>
-                                    <p><span>Discount:</span> <span>$45.00</span></p>
+                                    <p><span>Subtotal:</span> <span>{{ subtotal | currency:"INR" }}</span></p>
+                                    <p><span>Delivery:</span> <span>{{ delivery | currency:"INR" }}</span></p>
+                                    
                                 </div>
                                 <div class="grand-total">
-                                    <p><span><strong>Total:</strong></span> <span>$450.00</span></p>
+                                    <p><span><strong>Total:</strong></span> <span>{{ grandtotal | currency:"INR" }}</span></p>
                                 </div>
+                            </div>
+                            <div class="mt-3 text-right">
+                                <a class="btn btn-success" routerLink="/checkout">Checkout</a>
                             </div>
                         </div>
                     </div>
