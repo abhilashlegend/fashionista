@@ -15,6 +15,7 @@ export class CheckoutComponent {
   subtotal:number = 0.0;
   delivery:number = 0.0;
   grandtotal:number = 0.0;
+  user:any;
 
   constructor(private router:Router, private api: ApiService, private cartService: CartService){
     this.baseurl = api.baseurl;
@@ -33,6 +34,9 @@ export class CheckoutComponent {
     this.subtotal = 0.0;
     this.delivery = 0.0;
     this.grandtotal = 0.0;
+    this.api.get("user/" + localStorage.getItem("id")).subscribe((result:any) => {
+      this.user = result.data;
+    })
 
     if(this.products.length == 0){
       this.router.navigate(['/']);
