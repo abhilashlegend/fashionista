@@ -6,6 +6,7 @@
             <div id="colorlib-logo"><a routerLink="/">Fashionista</a></div>
           </div>
           <div class="col-sm-5 col-md-3">
+                
                 <form action="#" class="search-wrap">
                    <div class="form-group">
                       <input type="search" class="form-control search" placeholder="Search">
@@ -18,22 +19,16 @@
           <div class="col-sm-12 text-left menu-1">
             <ul>
               <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"><a routerLink="/">Home</a></li>
-              <li routerLinkActive="active" class="has-dropdown">
-                <a routerLink="/products">Men</a>
-                <ul class="dropdown">
-                  <li><a href="product-detail.html">Product Detail</a></li>
-                  <li><a href="cart.html">Shopping Cart</a></li>
-                  <li><a href="checkout.html">Checkout</a></li>
-                  <li><a href="order-complete.html">Order Complete</a></li>
-                  <li><a href="add-to-wishlist.html">Wishlist</a></li>
-                </ul>
-              </li>
+              
               <li *ngFor="let category of categories" routerLinkActive="active"><a routerLink="products/{{ category._id }}">{{ category.name }}</a></li>
               <li routerLinkActive="active"><a routerLink="/about">About</a></li>
               <li routerLinkActive="active"><a routerLink="/contact">Contact</a></li>
               
+              <li class="cart" *ngIf="isUserLoggedIn" >Welcome {{ this.username }}</li>
               <li class="cart"><a routerLink="/cart"><i class="icon-shopping-cart"></i> Cart [{{ cartcount }}]</a></li>
-              <li class="cart"><a routerLink="/login"><i class="icon-key2"></i> Login</a></li>
+              <li *ngIf="!isUserLoggedIn" class="cart"><a routerLink="/login"><i class="icon-key2"></i> Login</a></li>
+              <li *ngIf="isUserLoggedIn" class="cart"><button class="logout-btn" (click)="logout()" >Logout</button></li>
+              
             </ul>
           </div>
         </div>
@@ -47,12 +42,12 @@
               <div class="owl-carousel2">
                 <div class="item">
                   <div class="col">
-                    <h3><a href="#">25% off (Almost) Everything! Use Code: Summer Sale</a></h3>
+                    <h3><a href="#">Get 60% off on Indian Wear</a></h3>
                   </div>
                 </div>
                 <div class="item">
                   <div class="col">
-                    <h3><a href="#">Our biggest sale yet 50% off all summer shoes</a></h3>
+                    <h3><a href="#">Get 30% off on Western Wear</a></h3>
                   </div>
                 </div>
               </div>

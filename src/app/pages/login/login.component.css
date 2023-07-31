@@ -13,3 +13,7 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+.login-btn {
+    padding-left: 2.5rem; padding-right: 2.5rem;
+}

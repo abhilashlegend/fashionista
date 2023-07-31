@@ -62,8 +62,7 @@ export class ProductComponent implements OnInit {
 
   onClickSubmit(data:any) {
     data.imagePath = this.imagestring;
-    data.varieties = this.product.varieties;
-    console.log(data.varieties);
+   
     if(data.id == ''){
       this.api.post("product/save", {data: data}).subscribe((result:any) => {
         this.router.navigate(['/admin/products'])
@@ -71,6 +70,8 @@ export class ProductComponent implements OnInit {
         console.log(error);
       })
     } else {
+      data.varieties = this.product.varieties;
+      console.log(data.varieties);
       this.api.update("product/update", data.id, data).subscribe((result:any) => {
         this.router.navigate(['/admin/products'])
       }, error => {

@@ -12,6 +12,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { ProductsComponent } from './pages/products/products.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { LoginComponent } from './pages/admin/login/login.component';
+import { LoginComponent as UserLoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +39,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     ProductsComponent,
     PaginationComponent,
     LoginComponent,
+    UserLoginComponent,
     RegisterComponent,
     DashboardComponent,
     NavbarComponent,
