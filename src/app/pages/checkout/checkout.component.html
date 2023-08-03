@@ -20,55 +20,44 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <form [formGroup]="formdata" (submit)="submitHandler(formdata.value)" class="">
+        <div class="row" *ngIf="formdata">
+            
             <div class="col-lg-8">
-                <form method="post" class="colorlib-form">
-                    <h2>Billing Details</h2>
-                  <div class="row">
                 
+                    <h2>Billing Details</h2>
+                  <div class="row colorlib-form">
+                    
+                    <input type="hidden" formControlName="userid" />
 
                    <div class="col-md-12">
                             <div class="form-group">
-                                <label for="fname">Address</label>
-                            <textarea type="text" id="address" class="form-control" [value]="user?.address "  placeholder="Enter Your Address"></textarea>
+                                <label for="address">Address</label>
+                            <textarea type="text" formControlName="address" id="address" class="form-control"  placeholder="Enter Your Address"></textarea>
                       </div>
                       
                    </div>
                 
                    <div class="col-md-12">
                             <div class="form-group">
-                                <label for="companyname">Town/City</label>
-                            <input type="text" id="towncity" value="{{ user?.city }}" class="form-control" placeholder="Town or City">
+                                <label for="city">Town/City</label>
+                            <input type="text" id="city" formControlName="city" value="{{ user?.city }}" class="form-control" placeholder="Town or City">
                       </div>
                    </div>
                 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="stateprovince">State/Province</label>
-                                <input type="text" id="fname" class="form-control" value="{{ user?.state }}" placeholder="State Province">
+                                <label for="state">State/Province</label>
+                                <input type="text" id="state" formControlName="state" class="form-control" value="{{ user?.state }}" placeholder="State Province">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="lname">Zip/Postal Code</label>
-                                <input type="text" id="zippostalcode" class="form-control" value="{{ user?.pincode }}" placeholder="Zip / Postal">
+                                <label for="pincode">Zip/Postal Code</label>
+                                <input type="text" id="pincode" formControlName="pincode" class="form-control" value="{{ user?.pincode }}" placeholder="Zip / Postal">
                             </div>
-                        </div>
-                    
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email">E-mail Address</label>
-                                <input type="text" id="email" class="form-control" value="{{ user?.email }}" placeholder="State Province">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Phone">Phone Number</label>
-                                <input type="text" id="zippostalcode" value="{{ user?.mobileno }}" class="form-control" placeholder="">
-                            </div>
-                        </div>
+                        </div>                 
                </div>
-            </form>
             </div>
 
             <div class="col-lg-4">
@@ -127,10 +116,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p><a href="#" class="btn btn-primary">Place an order</a></p>
+                        <p><input type="submit" [disabled]="!formdata.valid" class="btn btn-primary" value="Place an order" /></p>
                     </div>
                 </div>
             </div>
         </div>
+    </form>
     </div>
 </div>
